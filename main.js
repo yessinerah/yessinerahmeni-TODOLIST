@@ -1,18 +1,25 @@
- $('#button1').click(function () {
-    var add=$('input[name=listof]').val();
-    if($('input[name=listof]').val()===''){
-        alert('please write something !')
-     }
-     else
- {$('ol').append('<li >'+add+'</li><button id="butt" ></button>')
-
-}
-$('#butt').click(function(){
+$(document).ready(function () {
+    // Functionality to add a task when the button is clicked
+    $('#button1').click(function() {
+      var task = $('#list').val();
+      if (task.length === 0) {
+        alert('Please enter a task!');
+      } else {
+        $('#tasks').append('<br><br><li>' + task + '</li>');
+      }
+    });
+    
+    // Functionality to mark a task as completed (line-through and change background color) on single click
+    $(document).on("click", "#tasks li", function() {
+      $(this).css('text-decoration', 'line-through');
+      $(this).css('background-color', 'red');
+    });
   
-    add.css('text-decoration','line-through')   
-})
- });  
-//when user write something and press the button,the text will be added to a list and displayed under the white background with a checkbox and when there is no input it will be an alert
+    // Functionality to remove a task on double-click
+    $(document).on("dblclick", "#tasks li", function() {
+      $(this).remove();
+    });
+  });
 
 
 
